@@ -2,6 +2,10 @@
 
 using UnityEngine;
 using System.Collections;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -1157,7 +1161,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (accessedMapSettings.getEncounterList(encounterLocation).Length > 0)
         {
-            if (Random.value <= accessedMapSettings.getEncounterProbability())
+            System.Random rand = new System.Random();
+             double u1 = rand.NextDouble();
+             double u2 = rand.NextDouble();
+            double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
+                         Math.Sin(2.0 * Math.PI * u2);
+            //if (1 <= accessedMapSettings.getEncounterProbability())
+            if (randStdNormal <= accessedMapSettings.getEncounterProbability())
+            //double N = 1 * (Math.Exp(-Math.Pow(u1, 2) / 2)) / Math.Sqrt(2 * Math.PI);
+            // if (Random.value <= accessedMapSettings.getEncounterProbability())
+            //if (true)
+            //if (N <= accessedMapSettings.getEncounterProbability())
             {
                 if (setCheckBusyWith(Scene.main.Battle.gameObject))
                 {
