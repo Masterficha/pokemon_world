@@ -1162,12 +1162,30 @@ public class PlayerMovement : MonoBehaviour
         if (accessedMapSettings.getEncounterList(encounterLocation).Length > 0)
         {
             System.Random rand = new System.Random();
-             double u1 = rand.NextDouble();
-             double u2 = rand.NextDouble();
-            double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
-                         Math.Sin(2.0 * Math.PI * u2);
+            double u1 = 0.7 + rand.NextDouble();
+             double u2 = 0.7 + rand.NextDouble();
+
+             double randStdNormal1 = Math.Sqrt(-2.0 * Math.Log(u1)) *
+               Math.Sin(2.0 * Math.PI * u2);
+            double randStdNormal2 = Math.Sqrt(-2.0 * Math.Log(u1)) *
+              Math.Cos(2.0 * Math.PI * u2);
+            double AlUni = randStdNormal1 + randStdNormal2;
+            if (AlUni <= accessedMapSettings.getEncounterProbability())
             //if (1 <= accessedMapSettings.getEncounterProbability())
-            if (randStdNormal <= accessedMapSettings.getEncounterProbability())
+            /*double U, u, v, S;
+
+            do
+            {
+                u = 16.0 * rand.NextDouble() - 1.0;
+                v = 16.0 * rand.NextDouble() - 1.0;
+                S = u * u + v * v;
+            }
+            while (S >= 1.0);
+
+            double fac = Math.Sqrt(-2.0 * Math.Log(S) / S);*/
+
+            //if (Math.Abs((fac * u)) <= accessedMapSettings.getEncounterProbability())
+            // if (randStdNormal <= accessedMapSettings.getEncounterProbability())
             //double N = 1 * (Math.Exp(-Math.Pow(u1, 2) / 2)) / Math.Sqrt(2 * Math.PI);
             // if (Random.value <= accessedMapSettings.getEncounterProbability())
             //if (true)
